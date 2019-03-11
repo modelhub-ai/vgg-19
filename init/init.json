@@ -1,0 +1,9 @@
+{
+  "docker_id": "modelhub/mxnet-modelhub:1.0.0",
+  "external_contrib_files": [
+    {
+      "src_url": "https://github.com/modelhub-ai/arc-face/releases/download/v1.0/vgg19-0000.params",
+      "dest_file_path": "/contrib_src/model/vgg19-0000.params"
+    }
+  ]
+}

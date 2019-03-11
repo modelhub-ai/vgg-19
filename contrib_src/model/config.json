@@ -1,0 +1,56 @@
+{
+  "id": "f7201cb5-37af-476b-86e0-4c8120d8235e",
+  "meta": {
+    "name": "vgg-19",
+    "application_area": "ImageNet",
+    "task": "Classification",
+    "task_extended": "ImageNet classification",
+    "data_type": "Image/Photo",
+    "data_source": "http://www.image-net.org/"
+  },
+  "publication": {
+    "title": "Very Deep Convolutional Networks for Large-Scale Image Recognition",
+    "source": "arXiv",
+    "year": 2015,
+    "authors": "Karen Simonyan, Andrew Zisserman",
+    "email": "karen@robots.ox.ac.uk",
+    "abstract": "In this work we investigate the effect of the convolutional network depth on its accuracy in the large-scale image recognition setting. Our main contribution is a thorough evaluation of networks of increasing depth using an architecture with very small (3x3) convolution filters, which shows that a significant improvement on the prior-art configurations can be achieved by pushing the depth to 16-19 weight layers. These findings were the basis of our ImageNet Challenge 2014 submission, where our team secured the first and the second places in the localisation and classification tracks respectively. We also show that our representations generalise well to other datasets, where they achieve state-of-the-art results. We have made our two best-performing ConvNet models publicly available to facilitate further research on the use of deep visual representations in computer vision.",
+    "url": "https://arxiv.org/abs/1409.1556",
+    "google_scholar": "https://scholar.google.com/scholar?cites=15993525775437884507&as_sdt=40000005&sciodt=0,22&hl=en",
+    "bibtex": "@article{DBLP:journals/corr/SimonyanZ14a, author = {Karen Simonyan and Andrew Zisserman}, title     = {Very Deep Convolutional Networks for Large-Scale Image Recognition}, journal   = {CoRR}, volume = {abs/1409.1556}, year = {2014}, url = {http://arxiv.org/abs/1409.1556}, archivePrefix = {arXiv}, eprint = {1409.1556}, timestamp = {Mon, 13 Aug 2018 16:46:51 +0200}, biburl = {https://dblp.org/rec/bib/journals/corr/SimonyanZ14a}, bibsource = {dblp computer science bibliography, https://dblp.org}}"
+  },
+  "model": {
+    "description": "VGG-19 is a convolutional neural network trained on more than a million images from the ImageNet database. It is 19 layers deep and can classify images into 1000 object categories. It took part in the ImageNet ILSVRC-2014 challenge, where it secured the first and the second places in the localisation and classification tasks respectively.",
+    "architecture": "Convolutional Neural Network (CNN)",
+    "learning_type": "Supervised learning",
+    "format": ".json",
+    "io": {
+      "input": {
+        "format": ["image/png", "image/jpg", "image/jpeg"],
+        "dim_limits": [
+          {
+            "min": 3,
+            "max": 4
+          },
+          {
+            "min": 32
+          },
+          {
+            "min": 32
+          }
+        ]
+      },
+      "output": [
+        {
+          "name": "probabilities",
+          "type": "label_list",
+          "description": "Probabilities of the 1000 classes in the ImageNet dataset."
+        }
+      ]
+    }
+  },
+  "modelhub": {
+    "top": 5,
+    "sort": true
+  }
+}
