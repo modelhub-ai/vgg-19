@@ -6,26 +6,32 @@ import PIL
 import SimpleITK
 import numpy as np
 import json
+from mxnet.gluon.data.vision import transforms
 
 class ImageProcessor(ImageProcessorBase):
 
     def _preprocessBeforeConversionToNumpy(self, image):
         if isinstance(image, PIL.Image.Image):
-            # resize here
-            image = image.resize((224,224), resample = PIL.Image.LANCZOS)
             image = np.array(image).astype(np.float32)
             if len(image.shape) > 2:
                 image = image[:,:,0:3]
             else:
                 image = np.stack((image,)*3, axis=-1)
-            return image
+            arr = mx.nd.array(image)
+            transform_fn = transforms.Compose([
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
+            ])
+            arr = transform_fn(arr)
+            arr = arr.expand_dims(axis=0)
+            return arr.asnumpy()
         else:
             raise IOError("Image Type not supported for preprocessing.")
 
     def _preprocessAfterConversionToNumpy(self, npArr):
-        # reshape, convert to batch, and float32
-        arr = mx.nd.array(npArr)
-        return arr
+        return mx.nd.array(npArr)
 
     def computeOutput(self, inferenceResults):
         probs = np.squeeze(np.asarray(inferenceResults))
